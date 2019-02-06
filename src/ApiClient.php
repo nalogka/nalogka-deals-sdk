@@ -18,6 +18,7 @@ class ApiClient
      * @var AbstractSerializationComponent
      */
     private $serializationComponent;
+    
 
     public function __construct($baseUrl, $parameters = [], $serializationComponent = null)
     {
@@ -43,7 +44,7 @@ class ApiClient
 
         $headers = isset($this->parameters['headers']) ? $this->parameters['headers'] : [];
 
-        $url = rtrim($this->baseUrl, '/') . '/' . trim($path, '/') . '/';
+        $url = rtrim($this->baseUrl, '/') . '/' . ltrim($path, '/');
 
         if ($method === "GET" && $data) {
             $url .= "?" . http_build_query($data) . "&trace=explsdk";
@@ -76,9 +77,9 @@ class ApiClient
 
         $responseInfo = curl_getinfo($ch);
 
-        if (!in_array((int)$responseInfo['http_code'], [200, 201, 202, 203, 204, 205, 206, 207, 208, 226])) {
-            throw new ServerErrorException($responseInfo['http_code'], $result);
-        }
+        // if (!in_array((int)$responseInfo['http_code'], [200, 201, 202, 203, 204, 205, 206, 207, 208, 226])) {
+        //     throw new ServerErrorException($responseInfo['http_code'], $result);
+        // }
 
         if ($result === "") {
             return null;
