@@ -20,7 +20,7 @@ class ApiClient
     private $serializationComponent;
     
 
-    public function __construct($baseUrl, $parameters = [], $serializationComponent = null)
+    public function __construct($baseUrl, $parameters = [], $serializationComponent)
     {
         $this->baseUrl = $baseUrl;
 
@@ -47,9 +47,7 @@ class ApiClient
         $url = rtrim($this->baseUrl, '/') . '/' . ltrim($path, '/');
 
         if ($method === "GET" && $data) {
-            $url .= "?" . http_build_query($data) . "&trace=explsdk";
-        } else {
-            $url .= "?trace=explsdk";
+            $url .= "?" . http_build_query($data);
         }
 
         $ch = curl_init($url);
@@ -73,30 +71,35 @@ class ApiClient
 
         curl_setopt($ch, CURLOPT_HTTPHEADER, $curlReadyHeaders);
 
-        $result = curl_exec($ch);
+        $rawResponse = curl_exec($ch);
 
         $responseInfo = curl_getinfo($ch);
 
-        // if (!in_array((int)$responseInfo['http_code'], [200, 201, 202, 203, 204, 205, 206, 207, 208, 226])) {
-        //     throw new ServerErrorException($responseInfo['http_code'], $result);
-        // }
-
-        if ($result === "") {
+        if ($rawResponse === "" && !$this->isErrorResponse($responseInfo)) {
             return null;
         }
 
-        $array = json_decode($result, true);
+        $decodedResponse = json_decode($rawResponse, true);
 
-        if (!$this->serializationComponent) {
-            throw new NalogkaSdkException("Не указан компонент сериализации");
+        if (json_last_error() !== JSON_ERROR_NONE) {
+            throw new ServerErrorException($responseInfo['http_code'], $rawResponse);
         }
 
-        $object = $this->serializationComponent->deserialize($array);
+        $deserializedResponse = $this->serializationComponent->deserialize($decodedResponse);
 
-        if ($object instanceof AbstractError) {
-            throw new ApiErrorException($object);
+        if ($deserializedResponse instanceof AbstractError) {
+            throw new ApiErrorException($deserializedResponse);
         }
 
-        return $object;
+        return $deserializedResponse;
+    }
+
+    private function isErrorResponse($httpCode)
+    {
+        if (in_array($httpCode, [200, 201, 202, 203, 204, 205, 206, 207, 208, 226])) {
+            return true;
+        }
+
+        return false;
     }
 }
