@@ -1,0 +1,13 @@
+{
+    "name": "hitslab/nalogka-deals-sdk-example",
+    "description": "Пример реализации SDK для работы с API Безопасных сделок Наложка.рф",
+    "type": "library",
+    "require": {
+        "php": ">=5.6"
+    },
+    "autoload": {
+        "psr-4": {
+            "Nalogka\\DealsSDK\\": "src/"
+        }
+    }
+}
