@@ -18,6 +18,9 @@ class ApiClient
      * @var AbstractSerializationComponent
      */
     private $serializationComponent;
+
+
+    private  $logger;
     
 
     public function __construct($baseUrl, $parameters = [], $serializationComponent)
@@ -27,6 +30,19 @@ class ApiClient
         $this->parameters = $parameters;
 
         $this->serializationComponent = $serializationComponent;
+    }
+
+    public  function setLogger(Log $logger){
+        $this->logger = $logger;
+    }
+
+    private function logRequest($requestData, $response, $responseInfo){
+        $this->logger->write('Отправляемые данные:');
+        $this->logger->write($requestData);
+        $this->logger->write('Ответ от сервера:');
+        $this->logger->write($response);
+        $this->logger->write('Curlinfo:');
+        $this->logger->write($responseInfo);
     }
 
     /**
@@ -75,8 +91,12 @@ class ApiClient
 
         $responseInfo = curl_getinfo($ch);
 
-        if ($rawResponse === "" && !$this->isErrorResponse($responseInfo)) {
-            return null;
+        if ($this->logger instanceof Log){
+            $this->logRequest($data, $rawResponse, $responseInfo);
+        }
+
+        if (!$rawResponse && $this->isErrorResponse($responseInfo['http_code'])) {
+            throw new ServerErrorException($responseInfo['http_code'], "Не удалось получить ответ от сервера. HTTP код: {$responseInfo['http_code']}");
         }
 
         $decodedResponse = json_decode($rawResponse, true);
@@ -96,7 +116,7 @@ class ApiClient
 
     private function isErrorResponse($httpCode)
     {
-        if (in_array($httpCode, [200, 201, 202, 203, 204, 205, 206, 207, 208, 226])) {
+        if (!in_array($httpCode, [200, 201, 202, 203, 204, 205, 206, 207, 208, 226])) {
             return true;
         }
 
