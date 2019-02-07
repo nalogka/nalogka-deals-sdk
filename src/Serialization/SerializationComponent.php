@@ -17,6 +17,7 @@ use Nalogka\DealsSDK\Model\DepositForm;
 use Nalogka\DealsSDK\Model\Dispute;
 use Nalogka\DealsSDK\Model\Payment;
 use Nalogka\DealsSDK\Model\SubjectItem;
+use Nalogka\DealsSDK\Model\DealStatus;
 
 class SerializationComponent extends AbstractSerializationComponent
 {
@@ -30,6 +31,7 @@ class SerializationComponent extends AbstractSerializationComponent
         'SubjectItem' => SubjectItem::class,
         'Deposit' => Deposit::class,
         'Payment' => Payment::class,
+        'DealStatus' => DealStatus::class,
 
         'AccessDeniedError' => AccessDeniedError::class,
         'ItemValidationError' => ItemValidationError::class,

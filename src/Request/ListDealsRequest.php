@@ -32,6 +32,6 @@ class ListDealsRequest extends AbstractRequest
 
     protected function getHttpPath()
     {
-        return "/deals";
+        return "/deals/";
     }
 }

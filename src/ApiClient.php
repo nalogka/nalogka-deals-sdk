@@ -18,6 +18,7 @@ class ApiClient
      * @var AbstractSerializationComponent
      */
     private $serializationComponent;
+    
 
     public function __construct($baseUrl, $parameters = [], $serializationComponent)
     {
@@ -43,7 +44,7 @@ class ApiClient
 
         $headers = isset($this->parameters['headers']) ? $this->parameters['headers'] : [];
 
-        $url = rtrim($this->baseUrl, '/') . '/' . trim($path, '/') . '/';
+        $url = rtrim($this->baseUrl, '/') . '/' . ltrim($path, '/');
 
         if ($method === "GET" && $data) {
             $url .= "?" . http_build_query($data);
