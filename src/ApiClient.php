@@ -2,6 +2,7 @@
 
 namespace Nalogka\DealsSDK;
 
+use Psr\Log\LoggerInterface;
 use Nalogka\DealsSDK\Errors\AbstractError;
 use Nalogka\DealsSDK\Exception\ApiErrorException;
 use Nalogka\DealsSDK\Exception\NalogkaSdkException;
@@ -18,15 +19,20 @@ class ApiClient
      * @var AbstractSerializationComponent
      */
     private $serializationComponent;
+
+
+    private  $logger;
     
 
-    public function __construct($baseUrl, $parameters = [], $serializationComponent)
+    public function __construct($baseUrl, $parameters = [], $serializationComponent, LoggerInterface $logger = null)
     {
         $this->baseUrl = $baseUrl;
 
         $this->parameters = $parameters;
 
         $this->serializationComponent = $serializationComponent;
+
+        $this->logger = $logger;
     }
 
     /**
@@ -75,8 +81,17 @@ class ApiClient
 
         $responseInfo = curl_getinfo($ch);
 
-        if ($rawResponse === "" && !$this->isErrorResponse($responseInfo)) {
-            return null;
+        if ($this->logger instanceof LoggerInterface){
+            $this->logger->debug("Метод: {method} \n Данные запроса: {data} \n Ответ сервера: {rawResponse} \n Данные ответа: {responseInfo}", array(
+                'method' => $method,
+                'data' => $data,
+                'rawResponse' => $rawResponse,
+                'responseInfo' => $responseInfo
+            ));
+        }
+
+        if (!$rawResponse && $this->isErrorResponse($responseInfo['http_code'])) {
+            throw new ServerErrorException($responseInfo['http_code'], "Не удалось получить ответ от сервера. HTTP код: {$responseInfo['http_code']}");
         }
 
         $decodedResponse = json_decode($rawResponse, true);
@@ -96,7 +111,7 @@ class ApiClient
 
     private function isErrorResponse($httpCode)
     {
-        if (in_array($httpCode, [200, 201, 202, 203, 204, 205, 206, 207, 208, 226])) {
+        if (!in_array($httpCode, [200, 201, 202, 203, 204, 205, 206, 207, 208, 226])) {
             return true;
         }
 

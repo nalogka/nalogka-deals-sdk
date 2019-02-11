@@ -4,9 +4,11 @@
 namespace Nalogka\DealsSDK\Serialization;
 
 use Nalogka\DealsSDK\Errors\AccessDeniedError;
+use Nalogka\DealsSDK\Errors\UnauthorizedError;
 use Nalogka\DealsSDK\Errors\ItemValidationError;
 use Nalogka\DealsSDK\Errors\NotFoundError;
 use Nalogka\DealsSDK\Errors\ValidationError;
+use Nalogka\DealsSDK\Errors\ServerError;
 use Nalogka\DealsSDK\Exception\NalogkaSdkException;
 use Nalogka\DealsSDK\Model\AdditionalService;
 use Nalogka\DealsSDK\Model\Attachment;
@@ -33,10 +35,12 @@ class SerializationComponent extends AbstractSerializationComponent
         'Payment' => Payment::class,
         'DealStatus' => DealStatus::class,
 
+        'UnauthorizedError' => UnauthorizedError::class,
         'AccessDeniedError' => AccessDeniedError::class,
         'ItemValidationError' => ItemValidationError::class,
         'NotFoundError' => NotFoundError::class,
         'ValidationError' => ValidationError::class,
+        'ServerError' => ServerError::class,
     ];
 
     /**

@@ -11,9 +11,9 @@ class ListDealsRequest extends AbstractRequest
         return $this;
     }
 
-    public function limit($limit)
+    public function items($items)
     {
-        $this->requestData['limit'] = $limit;
+        $this->requestData['items'] = $items;
 
         return $this;
     }
