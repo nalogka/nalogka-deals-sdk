@@ -2,6 +2,7 @@
 
 namespace Nalogka\DealsSDK;
 
+use Psr\Log\LoggerInterface;
 use Nalogka\DealsSDK\Errors\AbstractError;
 use Nalogka\DealsSDK\Exception\ApiErrorException;
 use Nalogka\DealsSDK\Exception\NalogkaSdkException;
@@ -23,26 +24,15 @@ class ApiClient
     private  $logger;
     
 
-    public function __construct($baseUrl, $parameters = [], $serializationComponent)
+    public function __construct($baseUrl, $parameters = [], $serializationComponent, LoggerInterface $logger = null)
     {
         $this->baseUrl = $baseUrl;
 
         $this->parameters = $parameters;
 
         $this->serializationComponent = $serializationComponent;
-    }
 
-    public  function setLogger(Log $logger){
         $this->logger = $logger;
-    }
-
-    private function logRequest($requestData, $response, $responseInfo){
-        $this->logger->write('Отправляемые данные:');
-        $this->logger->write($requestData);
-        $this->logger->write('Ответ от сервера:');
-        $this->logger->write($response);
-        $this->logger->write('Curlinfo:');
-        $this->logger->write($responseInfo);
     }
 
     /**
@@ -91,8 +81,13 @@ class ApiClient
 
         $responseInfo = curl_getinfo($ch);
 
-        if ($this->logger instanceof Log){
-            $this->logRequest($data, $rawResponse, $responseInfo);
+        if ($this->logger instanceof LoggerInterface){
+            $this->logger->debug("Метод: {method} \n Данные запроса: {data} \n Ответ сервера: {rawResponse} \n Данные ответа: {responseInfo}", array(
+                'method' => $method,
+                'data' => $data,
+                'rawResponse' => $rawResponse,
+                'responseInfo' => $responseInfo
+            ));
         }
 
         if (!$rawResponse && $this->isErrorResponse($responseInfo['http_code'])) {
