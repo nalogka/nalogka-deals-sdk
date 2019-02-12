@@ -16,10 +16,13 @@ use Nalogka\DealsSDK\Model\CalculationResult;
 use Nalogka\DealsSDK\Model\Deal;
 use Nalogka\DealsSDK\Model\Deposit;
 use Nalogka\DealsSDK\Model\DepositForm;
+use Nalogka\DealsSDK\Model\FormData;
 use Nalogka\DealsSDK\Model\Dispute;
 use Nalogka\DealsSDK\Model\Payment;
 use Nalogka\DealsSDK\Model\SubjectItem;
 use Nalogka\DealsSDK\Model\DealStatus;
+use Nalogka\DealsSDK\Model\Requisite;
+use Nalogka\DealsSDK\Model\Track;
 
 class SerializationComponent extends AbstractSerializationComponent
 {
@@ -34,6 +37,9 @@ class SerializationComponent extends AbstractSerializationComponent
         'Deposit' => Deposit::class,
         'Payment' => Payment::class,
         'DealStatus' => DealStatus::class,
+        'Requisite' => Requisite::class,
+        'FormData'  => FormData::class,
+        'Track' => Track::class,
 
         'UnauthorizedError' => UnauthorizedError::class,
         'AccessDeniedError' => AccessDeniedError::class,
