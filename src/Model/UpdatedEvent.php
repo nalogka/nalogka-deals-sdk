@@ -8,6 +8,8 @@ class UpdatedEvent
 {
     public $id;
 
+    public $changeSet;
+
     public $occuredAt;
 
     public $initiatedBy;

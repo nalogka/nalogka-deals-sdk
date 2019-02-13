@@ -8,8 +8,6 @@ class StatusChangedEvent
 {
     public $id;
     
-    public $changeSet;
-
     public $occuredAt;
 
     public $initiatedBy;
