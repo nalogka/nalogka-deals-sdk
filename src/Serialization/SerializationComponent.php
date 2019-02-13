@@ -24,6 +24,11 @@ use Nalogka\DealsSDK\Model\DealStatus;
 use Nalogka\DealsSDK\Model\Requisite;
 use Nalogka\DealsSDK\Model\Track;
 
+use Nalogka\DealsSDK\Model\DeliveryEvent;
+use Nalogka\DealsSDK\Model\CreatedEvent;
+use Nalogka\DealsSDK\Model\UpdatedEvent;
+use Nalogka\DealsSDK\Model\StatusChangedEvent;
+
 class SerializationComponent extends AbstractSerializationComponent
 {
     private $dataMapping = [
@@ -40,6 +45,11 @@ class SerializationComponent extends AbstractSerializationComponent
         'Requisite' => Requisite::class,
         'FormData'  => FormData::class,
         'Track' => Track::class,
+
+        'DeliveryEvent' => DeliveryEvent::class,
+        'CreatedEvent' => CreatedEvent::class,
+        'UpdatedEvent' => UpdatedEvent::class,
+        'StatusChangedEvent' => StatusChangedEvent::class,
 
         'UnauthorizedError' => UnauthorizedError::class,
         'AccessDeniedError' => AccessDeniedError::class,
@@ -64,7 +74,7 @@ class SerializationComponent extends AbstractSerializationComponent
             try {
                 return $this->deserializeCollection($data);
             } catch (\Exception $exception) {
-                throw new NalogkaSdkException("Не найдено поле type в структуре", $exception);
+                return (object)$data;
             }
         }
 
