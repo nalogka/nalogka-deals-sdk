@@ -96,7 +96,7 @@ class CreateDealRequest extends AbstractRequest
         return $this;
     }
 
-    public function partialBuyoutNorAllowed()
+    public function partialBuyoutNotAllowed()
     {
         $this->requestData['partial_buyout_allowed'] = false;
 
