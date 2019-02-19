@@ -1,6 +1,6 @@
 <?php
 
-namespace Nalogka\DealsSDK\Request;
+namespace Fostenslave\NalogkaDealsSDK\Request;
 
 class ListDepositRequisites extends AbstractRequest
 {

@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Nalogka\DealsSDK\Errors;
+namespace Fostenslave\NalogkaDealsSDK\Errors;
 
 
 class ItemValidationError extends AbstractError

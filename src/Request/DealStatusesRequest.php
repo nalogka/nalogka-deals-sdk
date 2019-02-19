@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Nalogka\DealsSDK\Request;
+namespace Fostenslave\NalogkaDealsSDK\Request;
 
 
 class DealStatusesRequest extends AbstractRequest

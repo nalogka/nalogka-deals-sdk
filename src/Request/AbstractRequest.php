@@ -1,8 +1,8 @@
 <?php
 
-namespace Nalogka\DealsSDK\Request;
+namespace Fostenslave\NalogkaDealsSDK\Request;
 
-use Nalogka\DealsSDK\ApiClient;
+use Fostenslave\NalogkaDealsSDK\ApiClient;
 
 abstract class AbstractRequest
 {

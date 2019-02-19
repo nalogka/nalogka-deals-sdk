@@ -1,9 +1,9 @@
 <?php
 
 
-namespace Nalogka\DealsSDK\Serialization;
+namespace Fostenslave\NalogkaDealsSDK\Serialization;
 
-use Nalogka\DealsSDK\Exception\NalogkaSdkException;
+use Fostenslave\NalogkaDealsSDK\Exception\NalogkaSdkException;
 
 abstract class AbstractSerializationComponent
 {

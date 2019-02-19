@@ -1,13 +1,13 @@
 <?php
 
-namespace Nalogka\DealsSDK;
+namespace Fostenslave\NalogkaDealsSDK;
 
 use Psr\Log\LoggerInterface;
-use Nalogka\DealsSDK\Errors\AbstractError;
-use Nalogka\DealsSDK\Exception\ApiErrorException;
-use Nalogka\DealsSDK\Exception\NalogkaSdkException;
-use Nalogka\DealsSDK\Exception\ServerErrorException;
-use Nalogka\DealsSDK\Serialization\AbstractSerializationComponent;
+use Fostenslave\NalogkaDealsSDK\Errors\AbstractError;
+use Fostenslave\NalogkaDealsSDK\Exception\ApiErrorException;
+use Fostenslave\NalogkaDealsSDK\Exception\NalogkaSdkException;
+use Fostenslave\NalogkaDealsSDK\Exception\ServerErrorException;
+use Fostenslave\NalogkaDealsSDK\Serialization\AbstractSerializationComponent;
 
 class ApiClient
 {

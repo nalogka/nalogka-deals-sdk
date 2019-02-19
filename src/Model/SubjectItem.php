@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Nalogka\DealsSDK\Model;
+namespace Fostenslave\NalogkaDealsSDK\Model;
 
 
 class SubjectItem

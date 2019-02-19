@@ -1,33 +1,33 @@
 <?php
 
 
-namespace Nalogka\DealsSDK\Serialization;
+namespace Fostenslave\NalogkaDealsSDK\Serialization;
 
-use Nalogka\DealsSDK\Errors\AccessDeniedError;
-use Nalogka\DealsSDK\Errors\UnauthorizedError;
-use Nalogka\DealsSDK\Errors\ItemValidationError;
-use Nalogka\DealsSDK\Errors\NotFoundError;
-use Nalogka\DealsSDK\Errors\ValidationError;
-use Nalogka\DealsSDK\Errors\ServerError;
-use Nalogka\DealsSDK\Exception\NalogkaSdkException;
-use Nalogka\DealsSDK\Model\AdditionalService;
-use Nalogka\DealsSDK\Model\Attachment;
-use Nalogka\DealsSDK\Model\CalculationResult;
-use Nalogka\DealsSDK\Model\Deal;
-use Nalogka\DealsSDK\Model\Deposit;
-use Nalogka\DealsSDK\Model\DepositForm;
-use Nalogka\DealsSDK\Model\FormData;
-use Nalogka\DealsSDK\Model\Dispute;
-use Nalogka\DealsSDK\Model\Payment;
-use Nalogka\DealsSDK\Model\SubjectItem;
-use Nalogka\DealsSDK\Model\DealStatus;
-use Nalogka\DealsSDK\Model\Requisite;
-use Nalogka\DealsSDK\Model\Track;
+use Fostenslave\NalogkaDealsSDK\Errors\AccessDeniedError;
+use Fostenslave\NalogkaDealsSDK\Errors\UnauthorizedError;
+use Fostenslave\NalogkaDealsSDK\Errors\ItemValidationError;
+use Fostenslave\NalogkaDealsSDK\Errors\NotFoundError;
+use Fostenslave\NalogkaDealsSDK\Errors\ValidationError;
+use Fostenslave\NalogkaDealsSDK\Errors\ServerError;
+use Fostenslave\NalogkaDealsSDK\Exception\NalogkaSdkException;
+use Fostenslave\NalogkaDealsSDK\Model\AdditionalService;
+use Fostenslave\NalogkaDealsSDK\Model\Attachment;
+use Fostenslave\NalogkaDealsSDK\Model\CalculationResult;
+use Fostenslave\NalogkaDealsSDK\Model\Deal;
+use Fostenslave\NalogkaDealsSDK\Model\Deposit;
+use Fostenslave\NalogkaDealsSDK\Model\DepositForm;
+use Fostenslave\NalogkaDealsSDK\Model\FormData;
+use Fostenslave\NalogkaDealsSDK\Model\Dispute;
+use Fostenslave\NalogkaDealsSDK\Model\Payment;
+use Fostenslave\NalogkaDealsSDK\Model\SubjectItem;
+use Fostenslave\NalogkaDealsSDK\Model\DealStatus;
+use Fostenslave\NalogkaDealsSDK\Model\Requisite;
+use Fostenslave\NalogkaDealsSDK\Model\Track;
 
-use Nalogka\DealsSDK\Model\DeliveryEvent;
-use Nalogka\DealsSDK\Model\CreatedEvent;
-use Nalogka\DealsSDK\Model\UpdatedEvent;
-use Nalogka\DealsSDK\Model\StatusChangedEvent;
+use Fostenslave\NalogkaDealsSDK\Model\DeliveryEvent;
+use Fostenslave\NalogkaDealsSDK\Model\CreatedEvent;
+use Fostenslave\NalogkaDealsSDK\Model\UpdatedEvent;
+use Fostenslave\NalogkaDealsSDK\Model\StatusChangedEvent;
 
 class SerializationComponent extends AbstractSerializationComponent
 {

@@ -1,8 +1,8 @@
 <?php
 
-namespace Nalogka\DealsSDK\Request;
+namespace Fostenslave\NalogkaDealsSDK\Request;
 
-use Nalogka\DealsSDK\Model\Deal;
+use Fostenslave\NalogkaDealsSDK\Model\Deal;
 
 class GetDealRequest extends AbstractRequest
 {

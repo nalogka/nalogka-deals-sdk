@@ -1,12 +1,12 @@
 <?php
 
 
-namespace Nalogka\DealsSDK\Request;
+namespace Fostenslave\NalogkaDealsSDK\Request;
 
 
-use Nalogka\DealsSDK\Exception\ApiErrorException;
-use Nalogka\DealsSDK\Exception\NalogkaSdkException;
-use Nalogka\DealsSDK\Model\Deal;
+use Fostenslave\NalogkaDealsSDK\Exception\ApiErrorException;
+use Fostenslave\NalogkaDealsSDK\Exception\NalogkaSdkException;
+use Fostenslave\NalogkaDealsSDK\Model\Deal;
 
 class CalculateDealRequest extends AbstractRequest
 {

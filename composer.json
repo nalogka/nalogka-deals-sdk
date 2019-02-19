@@ -1,14 +1,31 @@
 {
-    "name": "hitslab/nalogka-deals-sdk-example",
-    "description": "Пример реализации SDK для работы с API Безопасных сделок Наложка.рф",
+    "name": "fostenslave/nalogka-deals-sdk",
+    "description": "Реализация SDK для работы с API Безопасных сделок Наложка.рф",
     "type": "library",
+    "license": "MIT",
     "require": {
         "php": ">=5.6",
         "psr/log": "^1.1"
     },
+    "authors": [
+        {
+            "name": "Vyacheslav Prudovskiy",
+            "email": "slavec56@gmail.com",
+            "role": "Developer"
+        },
+        {
+            "name": "Hitslab",
+            "email": "hitslab@yandex.ru",
+            "role": "Creator"
+        }
+    ],
+    "support": {
+        "email": "slavec56@gmail.com",
+        "issues": "https://bitbucket.org/fostenslave/nalogka-deals-sdk/issues"
+    },
     "autoload": {
         "psr-4": {
-            "Nalogka\\DealsSDK\\": "src/"
+            "Fostenslave\\NalogkaDealsSDK\\": "src/"
         }
     }
 }

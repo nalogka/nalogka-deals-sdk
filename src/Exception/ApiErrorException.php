@@ -1,8 +1,8 @@
 <?php
 
-namespace Nalogka\DealsSDK\Exception;
+namespace Fostenslave\NalogkaDealsSDK\Exception;
 
-use Nalogka\DealsSDK\Errors\AbstractError;
+use Fostenslave\NalogkaDealsSDK\Errors\AbstractError;
 
 class ApiErrorException extends NalogkaSdkException
 {

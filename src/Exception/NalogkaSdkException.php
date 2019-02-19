@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Nalogka\DealsSDK\Exception;
+namespace Fostenslave\NalogkaDealsSDK\Exception;
 
 
 class NalogkaSdkException extends \Exception
