@@ -98,7 +98,7 @@ class SerializationComponent extends AbstractSerializationComponent
             if (isset($collectionData[0])) {
                 $collectionElements = $collectionData;
             } else {
-                throw new NalogkaSdkException("Не правильная структура collection");
+                throw new NalogkaSdkException("Неправильная структура collection");
             }
         } else {
             $collectionElements = $collectionData['collection'];

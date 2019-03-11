@@ -103,7 +103,7 @@ class ApiClient
         $deserializedResponse = $this->serializationComponent->deserialize($decodedResponse);
 
         if ($deserializedResponse instanceof AbstractError) {
-            throw new ApiErrorException($deserializedResponse);
+            throw new ApiErrorException($deserializedResponse, $responseInfo['http_code']);
         }
 
         return $deserializedResponse;

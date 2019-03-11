@@ -8,9 +8,9 @@ class ApiErrorException extends NalogkaSdkException
 {
     private $error;
 
-    public function __construct($error)
+    public function __construct($error = "", $code = 0)
     {
-        parent::__construct("");
+        parent::__construct("", $code);
 
         $this->error = $error;
     }
