@@ -1,6 +1,6 @@
-# Пример реализации SDK для работы с API Безопасных сделок Наложка.рф
+# SDK для работы с API Безопасных сделок Наложка.рф
 
-Пример реализован на языке php
+- [Документация по API Безопасных сделок](https://api.nalogka.ru/deals.html)
 
 ## Использование
 
@@ -26,7 +26,7 @@ $listDealsRequest = (new ListDealsRequest($apiClient))
 try {
     $deals = $listDealsRequest->request();
 } catch (ApiErrorException $e) {
-    // Отшибка от API
+    // Ошибка от API
 } catch (ServerErrorException $e) {
     // Неизвестный ответ от сервера
 } catch (NalogkaSdkException $e) {
@@ -39,11 +39,11 @@ try {
 ```php
 $getDealRequest = (new GetDealRequest($apiClient))
     ->id(3);
-    
+
 try {
     $deal = $getDealRequest->request();
 } catch (ApiErrorException $e) {
-    // Отшибка от API
+    // Ошибка от API
 } catch (ServerErrorException $e) {
     // Неизвестный ответ от сервера
 } catch (NalogkaSdkException $e) {
@@ -63,11 +63,11 @@ $createDealRequest = (new CreateDealRequest($apiClient))
     ->additionalService('Доставка СДЭК', 'Тариф Посылка Склад-Склад', 450, 400, 'seller', 'seller')
     ->partialBuyoutNorAllowed();
 
-    
+
 try {
     $deal = $createDealRequest->request();
 } catch (ApiErrorException $e) {
-    // Отшибка от API
+    // Ошибка от API
 } catch (ServerErrorException $e) {
     // Неизвестный ответ от сервера
 } catch (NalogkaSdkException $e) {
