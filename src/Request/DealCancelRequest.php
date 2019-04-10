@@ -4,41 +4,41 @@ namespace Fostenslave\NalogkaDealsSDK\Request;
 
 use Fostenslave\NalogkaDealsSDK\Model\Deal;
 
-class ListDealsRequest extends AbstractRequest
+class DealCancelRequest extends AbstractRequest
 {
-    public function page($page)
+    private $id;
+    private $initiatorProfileId;
+
+    public function id($id)
     {
-        $this->requestData['page'] = $page;
+        $this->id = $id;
 
         return $this;
     }
 
-    public function items($items)
+    public function initiatorProfileId($initiatorProfileId)
     {
-        $this->requestData['items'] = $items;
-
-        return $this;
-    }
-
-    public function filter($filter)
-    {
-        $this->requestData['filter'] = $filter;
+        $this->initiatorProfileId = $initiatorProfileId;
 
         return $this;
     }
 
     protected function getHttpMethod()
     {
-        return self::METHOD_GET;
+        return self::METHOD_POST;
     }
 
     protected function getHttpPath()
     {
-        return "/deals/";
+        if ($this->initiatorProfileId) {
+            return "/deals/{$this->id}/cancel?initiator_profile_id=" . $this->initiatorProfileId;
+        }
+
+        return "/deals/{$this->id}/cancel";
     }
 
     /**
-     * @return Deal[]
+     * @return array|Deal
      * @throws \Fostenslave\NalogkaDealsSDK\Exception\ApiErrorException
      * @throws \Fostenslave\NalogkaDealsSDK\Exception\NalogkaSdkException
      * @throws \Fostenslave\NalogkaDealsSDK\Exception\ServerErrorException

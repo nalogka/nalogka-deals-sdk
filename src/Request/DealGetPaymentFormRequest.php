@@ -5,13 +5,20 @@ namespace Fostenslave\NalogkaDealsSDK\Request;
 use Fostenslave\NalogkaDealsSDK\Model\Deal;
 use Fostenslave\NalogkaDealsSDK\Model\FormData;
 
-class GetPaymentFormRequest extends AbstractRequest
+class DealGetPaymentFormRequest extends AbstractRequest
 {
     private $id;
 
     public function id($id)
     {
         $this->id = $id;
+
+        return $this;
+    }
+
+    public function initiatorProfileId($initiatorProfileId)
+    {
+        $this->requestData['initiator_profile_id'] = $initiatorProfileId;
 
         return $this;
     }

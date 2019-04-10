@@ -2,12 +2,9 @@
 
 namespace Fostenslave\NalogkaDealsSDK\Request;
 
-use Fostenslave\NalogkaDealsSDK\Model\CreatedEvent;
-use Fostenslave\NalogkaDealsSDK\Model\Deal;
-use Fostenslave\NalogkaDealsSDK\Model\StatusChangedEvent;
-use Fostenslave\NalogkaDealsSDK\Model\UpdatedEvent;
+use Fostenslave\NalogkaDealsSDK\Model\FormData;
 
-class DealEventsRequest extends AbstractRequest
+class DealGetDepositFormRequest extends AbstractRequest
 {
     private $id;
 
@@ -18,23 +15,30 @@ class DealEventsRequest extends AbstractRequest
         return $this;
     }
 
-    public function page($page)
+    public function initiatorProfileId($initiatorProfileId)
     {
-        $this->requestData['page'] = $page;
+        $this->requestData['initiator_profile_id'] = $initiatorProfileId;
+
+        return $this;
+    }
+
+    public function requisiteId($id)
+    {
+        $this->requestData['requisite_id'] = $id;
+
+        return $this;
+    }
+
+    public function successUrl($url)
+    {
+        $this->requestData['success_url'] = $url;
 
         return $this;
     }
     
-    public function items($items)
+    public function failUrl($url)
     {
-        $this->requestData['items'] = $items;
-
-        return $this;
-    }
-
-    public function filter($filter)
-    {
-        $this->requestData['filter'] = $filter;
+        $this->requestData['fail_url'] = $url;
 
         return $this;
     }
@@ -46,11 +50,11 @@ class DealEventsRequest extends AbstractRequest
 
     protected function getHttpPath()
     {
-        return "/deals/{$this->id}/events";
+        return "/deals/{$this->id}/deposit-form";
     }
 
     /**
-     * @return UpdatedEvent[]|CreatedEvent[]|StatusChangedEvent[]
+     * @return array|FormData
      * @throws \Fostenslave\NalogkaDealsSDK\Exception\ApiErrorException
      * @throws \Fostenslave\NalogkaDealsSDK\Exception\NalogkaSdkException
      * @throws \Fostenslave\NalogkaDealsSDK\Exception\ServerErrorException

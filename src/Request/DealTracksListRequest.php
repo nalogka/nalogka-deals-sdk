@@ -2,19 +2,18 @@
 
 namespace Fostenslave\NalogkaDealsSDK\Request;
 
-use Fostenslave\NalogkaDealsSDK\Model\Requisite;
+use Fostenslave\NalogkaDealsSDK\Model\TrackData;
 
-class ListDepositRequisites extends AbstractRequest
+class DealTracksListRequest extends AbstractRequest
 {
+	private $id;
 
-    private $ownerId;
+	public function id($id)
+	{
+		$this->id = $id;
 
-    public function ownerId($id)
-    {
-        $this->ownerId = $id;
-
-        return $this;
-    }
+		return $this;
+	}
 
     public function page($page)
     {
@@ -38,11 +37,11 @@ class ListDepositRequisites extends AbstractRequest
 
     protected function getHttpPath()
     {
-        return "/deposit/requisites/{$this->ownerId}";
+        return "/deals/{$this->id}/tracks";
     }
 
     /**
-     * @return Requisite[]
+     * @return TrackData[]
      * @throws \Fostenslave\NalogkaDealsSDK\Exception\ApiErrorException
      * @throws \Fostenslave\NalogkaDealsSDK\Exception\NalogkaSdkException
      * @throws \Fostenslave\NalogkaDealsSDK\Exception\ServerErrorException

@@ -2,11 +2,11 @@
 
 namespace Fostenslave\NalogkaDealsSDK\Request;
 
-use Fostenslave\NalogkaDealsSDK\Model\Track;
-
-class AddTrackDealRequest extends AbstractRequest
+class DealTrackDeleteRequest extends AbstractRequest
 {
     private $id;
+    private $initiatorProfileId;
+    private $trackCode;
 
     public function id($id)
     {
@@ -15,32 +15,36 @@ class AddTrackDealRequest extends AbstractRequest
         return $this;
     }
 
-    public function trackerId($trackerId)
+    public function initiatorProfileId($initiatorProfileId)
     {
-        $this->requestData['tracker_id'] = $trackerId;
+        $this->initiatorProfileId = $initiatorProfileId;
 
         return $this;
     }
 
-    public function trackingId($trackingId)
+    public function trackCode($trackCode)
     {
-        $this->requestData['tracking_id'] = $trackingId;
+        $this->trackCode = $trackCode;
 
         return $this;
     }
 
     protected function getHttpMethod()
     {
-        return self::METHOD_POST;
+        return self::METHOD_DELETE;
     }
 
     protected function getHttpPath()
     {
-        return "/deals/{$this->id}/tracks";
+        if ($this->initiatorProfileId) {
+            return "/deals/{$this->id}/tracks/{$this->trackCode}?initiator_profile_id=" . $this->initiatorProfileId;
+        }
+
+        return "/deals/{$this->id}/tracks/{$this->trackCode}";
     }
 
     /**
-     * @return array|Track
+     * @return null
      * @throws \Fostenslave\NalogkaDealsSDK\Exception\ApiErrorException
      * @throws \Fostenslave\NalogkaDealsSDK\Exception\NalogkaSdkException
      * @throws \Fostenslave\NalogkaDealsSDK\Exception\ServerErrorException

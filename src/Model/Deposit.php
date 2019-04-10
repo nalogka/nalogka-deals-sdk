@@ -29,7 +29,7 @@ class Deposit
     public $payoutRequisiteId;
 
     /**
-     * @var Payment[]
+     * @var Transaction[]
      */
     public $payments = [];
 

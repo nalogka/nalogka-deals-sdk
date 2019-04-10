@@ -4,8 +4,17 @@ namespace Fostenslave\NalogkaDealsSDK\Request;
 
 use Fostenslave\NalogkaDealsSDK\Model\Deal;
 
-class CreateDealRequest extends AbstractRequest
+class DealCreateRequest extends AbstractRequest
 {
+    public $initiatorProfileId;
+
+    public function initiatorProfileId($initiatorProfileId)
+    {
+        $this->initiatorProfileId = $initiatorProfileId;
+
+        return $this;
+    }
+
     public function orderId($orderId)
     {
         $this->requestData['order_id'] = $orderId;
@@ -78,7 +87,7 @@ class CreateDealRequest extends AbstractRequest
             'description' => $description,
             'original_cost' => $originalCost,
             'final_cost' => $finalCost,
-            'payer' => $payer,
+            'counterActor' => $payer,
             'provided_by' => $providedBy
         ];
 
@@ -99,6 +108,13 @@ class CreateDealRequest extends AbstractRequest
         return $this;
     }
 
+    public function payoutRequisiteId($payoutRequisiteId)
+    {
+        $this->requestData['payout_requisite_id'] = $payoutRequisiteId;
+
+        return $this;
+    }
+
     protected function getHttpMethod()
     {
         return self::METHOD_POST;
@@ -106,6 +122,10 @@ class CreateDealRequest extends AbstractRequest
 
     protected function getHttpPath()
     {
+        if ($this->initiatorProfileId) {
+            return "/deals/?initiator_profile_id=" . $this->initiatorProfileId;
+        }
+
         return "/deals/";
     }
 

@@ -4,13 +4,21 @@ namespace Fostenslave\NalogkaDealsSDK\Request;
 
 use Fostenslave\NalogkaDealsSDK\Model\Deal;
 
-class CancelDealRequest extends AbstractRequest
+class DealAgreeTermsRequest extends AbstractRequest
 {
     private $id;
+    private $initiatorProfileId;
 
     public function id($id)
     {
         $this->id = $id;
+
+        return $this;
+    }
+
+    public function initiatorProfileId($initiatorProfileId)
+    {
+        $this->initiatorProfileId = $initiatorProfileId;
 
         return $this;
     }
@@ -22,7 +30,11 @@ class CancelDealRequest extends AbstractRequest
 
     protected function getHttpPath()
     {
-        return "/deals/{$this->id}/cancel";
+        if ($this->initiatorProfileId) {
+            return "/deals/{$this->id}/agree-terms?initiator_profile_id=" . $this->initiatorProfileId;
+        }
+
+        return "/deals/{$this->id}/agree-terms";
     }
 
     /**

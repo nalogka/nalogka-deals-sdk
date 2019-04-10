@@ -4,29 +4,41 @@ namespace Fostenslave\NalogkaDealsSDK\Request;
 
 use Fostenslave\NalogkaDealsSDK\Model\Deal;
 
-class PerformingStartDealRequest extends AbstractRequest
+class DealsListRequest extends AbstractRequest
 {
-    private $id;
-
-    public function id($id)
+    public function page($page)
     {
-        $this->id = $id;
+        $this->requestData['page'] = $page;
+
+        return $this;
+    }
+
+    public function items($items)
+    {
+        $this->requestData['items'] = $items;
+
+        return $this;
+    }
+
+    public function filter($filter)
+    {
+        $this->requestData['filter'] = $filter;
 
         return $this;
     }
 
     protected function getHttpMethod()
     {
-        return self::METHOD_POST;
+        return self::METHOD_GET;
     }
 
     protected function getHttpPath()
     {
-        return "/deals/{$this->id}/performing-start";
+        return "/deals/";
     }
 
     /**
-     * @return array|Deal
+     * @return Deal[]
      * @throws \Fostenslave\NalogkaDealsSDK\Exception\ApiErrorException
      * @throws \Fostenslave\NalogkaDealsSDK\Exception\NalogkaSdkException
      * @throws \Fostenslave\NalogkaDealsSDK\Exception\ServerErrorException

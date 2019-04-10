@@ -1,16 +1,26 @@
 <?php
 
+
 namespace Fostenslave\NalogkaDealsSDK\Request;
+
 
 use Fostenslave\NalogkaDealsSDK\Model\Deal;
 
-class AgreeTermsDealRequest extends AbstractRequest
+class DealConfirmAcceptationRequest extends AbstractRequest
 {
     private $id;
+    private $initiatorProfileId;
 
     public function id($id)
     {
         $this->id = $id;
+
+        return $this;
+    }
+
+    public function initiatorProfileId($initiatorProfileId)
+    {
+        $this->initiatorProfileId = $initiatorProfileId;
 
         return $this;
     }
@@ -22,7 +32,7 @@ class AgreeTermsDealRequest extends AbstractRequest
 
     protected function getHttpPath()
     {
-        return "/deals/{$this->id}/agree-terms";
+        return "/deals/{$this->id}/confirm-acceptation";
     }
 
     /**
