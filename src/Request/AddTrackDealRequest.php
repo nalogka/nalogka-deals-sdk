@@ -2,6 +2,8 @@
 
 namespace Fostenslave\NalogkaDealsSDK\Request;
 
+use Fostenslave\NalogkaDealsSDK\Model\Track;
+
 class AddTrackDealRequest extends AbstractRequest
 {
     private $id;
@@ -35,5 +37,16 @@ class AddTrackDealRequest extends AbstractRequest
     protected function getHttpPath()
     {
         return "/deals/{$this->id}/tracks";
+    }
+
+    /**
+     * @return array|Track
+     * @throws \Fostenslave\NalogkaDealsSDK\Exception\ApiErrorException
+     * @throws \Fostenslave\NalogkaDealsSDK\Exception\NalogkaSdkException
+     * @throws \Fostenslave\NalogkaDealsSDK\Exception\ServerErrorException
+     */
+    public function request()
+    {
+        return parent::request();
     }
 }

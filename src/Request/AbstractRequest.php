@@ -30,9 +30,9 @@ abstract class AbstractRequest
 
     /**
      * @return array|object|null
-     * @throws \Nalogka\DealsSDK\Exception\ApiErrorException
-     * @throws \Nalogka\DealsSDK\Exception\NalogkaSdkException
-     * @throws \Nalogka\DealsSDK\Exception\ServerErrorException
+     * @throws \Fostenslave\NalogkaDealsSDK\Exception\ApiErrorException
+     * @throws \Fostenslave\NalogkaDealsSDK\Exception\NalogkaSdkException
+     * @throws \Fostenslave\NalogkaDealsSDK\Exception\ServerErrorException
      */
     public function request()
     {

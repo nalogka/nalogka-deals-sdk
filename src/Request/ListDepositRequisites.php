@@ -2,6 +2,8 @@
 
 namespace Fostenslave\NalogkaDealsSDK\Request;
 
+use Fostenslave\NalogkaDealsSDK\Model\Requisite;
+
 class ListDepositRequisites extends AbstractRequest
 {
 
@@ -37,5 +39,16 @@ class ListDepositRequisites extends AbstractRequest
     protected function getHttpPath()
     {
         return "/deposit/requisites/{$this->ownerId}";
+    }
+
+    /**
+     * @return Requisite[]
+     * @throws \Fostenslave\NalogkaDealsSDK\Exception\ApiErrorException
+     * @throws \Fostenslave\NalogkaDealsSDK\Exception\NalogkaSdkException
+     * @throws \Fostenslave\NalogkaDealsSDK\Exception\ServerErrorException
+     */
+    public function request()
+    {
+        return parent::request();
     }
 }
