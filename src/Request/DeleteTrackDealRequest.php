@@ -30,4 +30,15 @@ class DeleteTrackDealRequest extends AbstractRequest
     {
         return "/deals/{$this->id}/tracks/{$this->trackingId}";
     }
+
+    /**
+     * @return null
+     * @throws \Fostenslave\NalogkaDealsSDK\Exception\ApiErrorException
+     * @throws \Fostenslave\NalogkaDealsSDK\Exception\NalogkaSdkException
+     * @throws \Fostenslave\NalogkaDealsSDK\Exception\ServerErrorException
+     */
+    public function request()
+    {
+        return parent::request();
+    }
 }

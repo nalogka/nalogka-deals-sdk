@@ -2,7 +2,10 @@
 
 namespace Fostenslave\NalogkaDealsSDK\Request;
 
+use Fostenslave\NalogkaDealsSDK\Model\CreatedEvent;
 use Fostenslave\NalogkaDealsSDK\Model\Deal;
+use Fostenslave\NalogkaDealsSDK\Model\StatusChangedEvent;
+use Fostenslave\NalogkaDealsSDK\Model\UpdatedEvent;
 
 class DealEventsRequest extends AbstractRequest
 {
@@ -47,10 +50,10 @@ class DealEventsRequest extends AbstractRequest
     }
 
     /**
-     * @return array|null|object|Deal
-     * @throws \Nalogka\DealsSDK\Exception\ApiErrorException
-     * @throws \Nalogka\DealsSDK\Exception\NalogkaSdkException
-     * @throws \Nalogka\DealsSDK\Exception\ServerErrorException
+     * @return UpdatedEvent[]|CreatedEvent[]|StatusChangedEvent[]
+     * @throws \Fostenslave\NalogkaDealsSDK\Exception\ApiErrorException
+     * @throws \Fostenslave\NalogkaDealsSDK\Exception\NalogkaSdkException
+     * @throws \Fostenslave\NalogkaDealsSDK\Exception\ServerErrorException
      */
     public function request()
     {

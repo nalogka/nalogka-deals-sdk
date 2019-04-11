@@ -1,11 +1,7 @@
 <?php
 
-
 namespace Fostenslave\NalogkaDealsSDK\Request;
 
-
-use Fostenslave\NalogkaDealsSDK\Exception\ApiErrorException;
-use Fostenslave\NalogkaDealsSDK\Exception\NalogkaSdkException;
 use Fostenslave\NalogkaDealsSDK\Model\Deal;
 
 class CalculateDealRequest extends AbstractRequest
@@ -62,9 +58,10 @@ class CalculateDealRequest extends AbstractRequest
     }
 
     /**
-     * @return array|object|Deal
-     * @throws ApiErrorException
-     * @throws NalogkaSdkException
+     * @return array|Deal
+     * @throws \Fostenslave\NalogkaDealsSDK\Exception\ApiErrorException
+     * @throws \Fostenslave\NalogkaDealsSDK\Exception\NalogkaSdkException
+     * @throws \Fostenslave\NalogkaDealsSDK\Exception\ServerErrorException
      */
     public function request()
     {

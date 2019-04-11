@@ -2,6 +2,9 @@
 
 namespace Fostenslave\NalogkaDealsSDK\Request;
 
+use Fostenslave\NalogkaDealsSDK\Model\Deal;
+use Fostenslave\NalogkaDealsSDK\Model\FormData;
+
 class GetPaymentFormRequest extends AbstractRequest
 {
     private $id;
@@ -52,10 +55,10 @@ class GetPaymentFormRequest extends AbstractRequest
     }
 
     /**
-     * @return array|null|object|Deal
-     * @throws \Nalogka\DealsSDK\Exception\ApiErrorException
-     * @throws \Nalogka\DealsSDK\Exception\NalogkaSdkException
-     * @throws \Nalogka\DealsSDK\Exception\ServerErrorException
+     * @return array|FormData
+     * @throws \Fostenslave\NalogkaDealsSDK\Exception\ApiErrorException
+     * @throws \Fostenslave\NalogkaDealsSDK\Exception\NalogkaSdkException
+     * @throws \Fostenslave\NalogkaDealsSDK\Exception\ServerErrorException
      */
     public function request()
     {

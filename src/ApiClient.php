@@ -82,12 +82,12 @@ class ApiClient
         $responseInfo = curl_getinfo($ch);
 
         if ($this->logger instanceof LoggerInterface){
-            $this->logger->debug("Метод: {method} \n Данные запроса: {data} \n Ответ сервера: {rawResponse} \n Данные ответа: {responseInfo}", array(
+            $this->logger->debug("Метод: {method} \n Данные запроса: {data} \n Ответ сервера: {rawResponse} \n Данные ответа: {responseInfo}", [
                 'method' => $method,
                 'data' => $data,
                 'rawResponse' => $rawResponse,
                 'responseInfo' => $responseInfo
-            ));
+            ]);
         }
 
         if (!$rawResponse && $this->isErrorResponse($responseInfo['http_code'])) {
@@ -103,7 +103,7 @@ class ApiClient
         $deserializedResponse = $this->serializationComponent->deserialize($decodedResponse);
 
         if ($deserializedResponse instanceof AbstractError) {
-            throw new ApiErrorException($deserializedResponse, $responseInfo['http_code']);
+            throw new ApiErrorException($deserializedResponse, $deserializedResponse->message, $responseInfo['http_code']);
         }
 
         return $deserializedResponse;
