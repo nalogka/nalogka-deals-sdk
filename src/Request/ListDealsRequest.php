@@ -2,6 +2,8 @@
 
 namespace Fostenslave\NalogkaDealsSDK\Request;
 
+use Fostenslave\NalogkaDealsSDK\Model\Deal;
+
 class ListDealsRequest extends AbstractRequest
 {
     public function page($page)
@@ -33,5 +35,16 @@ class ListDealsRequest extends AbstractRequest
     protected function getHttpPath()
     {
         return "/deals/";
+    }
+
+    /**
+     * @return Deal[]
+     * @throws \Fostenslave\NalogkaDealsSDK\Exception\ApiErrorException
+     * @throws \Fostenslave\NalogkaDealsSDK\Exception\NalogkaSdkException
+     * @throws \Fostenslave\NalogkaDealsSDK\Exception\ServerErrorException
+     */
+    public function request()
+    {
+        return parent::request();
     }
 }
