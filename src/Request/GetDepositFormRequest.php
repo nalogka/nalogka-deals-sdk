@@ -3,6 +3,7 @@
 namespace Fostenslave\NalogkaDealsSDK\Request;
 
 use Fostenslave\NalogkaDealsSDK\Model\Deal;
+use Fostenslave\NalogkaDealsSDK\Model\FormData;
 
 class GetDepositFormRequest extends AbstractRequest
 {
@@ -47,7 +48,7 @@ class GetDepositFormRequest extends AbstractRequest
     }
 
     /**
-     * @return array|Deal
+     * @return array|FormData
      * @throws \Fostenslave\NalogkaDealsSDK\Exception\ApiErrorException
      * @throws \Fostenslave\NalogkaDealsSDK\Exception\NalogkaSdkException
      * @throws \Fostenslave\NalogkaDealsSDK\Exception\ServerErrorException
