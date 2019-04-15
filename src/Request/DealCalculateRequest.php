@@ -37,7 +37,7 @@ class DealCalculateRequest extends AbstractRequest
         $this->requestData['additional_services'][] = [
             'name' => $name,
             'provided_by' => $providedBy,
-            'counterActor' => $payer,
+            'payer' => $payer,
             'original_cost' => $originalCost,
             'final_cost' => $finalCost,
         ];

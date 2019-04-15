@@ -87,7 +87,7 @@ class DealCreateRequest extends AbstractRequest
             'description' => $description,
             'original_cost' => $originalCost,
             'final_cost' => $finalCost,
-            'counterActor' => $payer,
+            'payer' => $payer,
             'provided_by' => $providedBy
         ];
 
