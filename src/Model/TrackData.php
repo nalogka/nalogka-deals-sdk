@@ -4,18 +4,19 @@
 namespace Fostenslave\NalogkaDealsSDK\Model;
 
 
-class Track
+class TrackData
 {
-
-    public $trackerId;
+    public $id;
 
     public $trackerType;
 
-    public $trackingId;
+    public $trackerShortName;
 
-    public $statusUpdatedAt;
+    public $code;
 
     public $status;
 
     public $events = [];
+
+    public $statusUpdatedAt;
 }

@@ -2,37 +2,34 @@
 
 namespace Fostenslave\NalogkaDealsSDK\Request;
 
-class DeleteTrackDealRequest extends AbstractRequest
+use Fostenslave\NalogkaDealsSDK\Model\Deal;
+
+class DealUpdateRequest extends DealCreateRequest
 {
     private $id;
-    private $trackingId;
 
     public function id($id)
     {
         $this->id = $id;
-
-        return $this;
-    }
-
-    public function trackingId($trackingId)
-    {
-        $this->trackingId = $trackingId;
-
         return $this;
     }
 
     protected function getHttpMethod()
     {
-        return self::METHOD_DELETE;
+        return self::METHOD_PATCH;
     }
 
     protected function getHttpPath()
     {
-        return "/deals/{$this->id}/tracks/{$this->trackingId}";
+        if ($this->initiatorProfileId) {
+            return "/deals/{$this->id}?initiator_profile_id=" . $this->initiatorProfileId;
+        }
+
+        return "/deals/{$this->id}";
     }
 
     /**
-     * @return null
+     * @return array|Deal
      * @throws \Fostenslave\NalogkaDealsSDK\Exception\ApiErrorException
      * @throws \Fostenslave\NalogkaDealsSDK\Exception\NalogkaSdkException
      * @throws \Fostenslave\NalogkaDealsSDK\Exception\ServerErrorException

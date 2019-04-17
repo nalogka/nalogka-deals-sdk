@@ -2,10 +2,28 @@
 
 namespace Fostenslave\NalogkaDealsSDK\Request;
 
-use Fostenslave\NalogkaDealsSDK\Model\DealStatus;
+use Fostenslave\NalogkaDealsSDK\Model\Requisite;
 
-class DealStatusesRequest extends AbstractRequest
+class RequisiteGetRequest extends AbstractRequest
 {
+
+    private $ownerId;
+    private $id;
+
+    public function ownerId($id)
+    {
+        $this->ownerId = $id;
+
+        return $this;
+    }
+
+    public function id($id)
+    {
+        $this->id = $id;
+
+        return $this;
+    }
+
     protected function getHttpMethod()
     {
         return self::METHOD_GET;
@@ -13,11 +31,11 @@ class DealStatusesRequest extends AbstractRequest
 
     protected function getHttpPath()
     {
-        return "/deals/statuses";
+        return "/deposit/requisites/{$this->ownerId}/{$this->id}";
     }
 
     /**
-     * @return DealStatus[]
+     * @return array|Requisite
      * @throws \Fostenslave\NalogkaDealsSDK\Exception\ApiErrorException
      * @throws \Fostenslave\NalogkaDealsSDK\Exception\NalogkaSdkException
      * @throws \Fostenslave\NalogkaDealsSDK\Exception\ServerErrorException

@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Fostenslave\NalogkaDealsSDK\Serialization;
 
 use Fostenslave\NalogkaDealsSDK\Errors\AccessDeniedError;
@@ -18,11 +17,11 @@ use Fostenslave\NalogkaDealsSDK\Model\Deposit;
 use Fostenslave\NalogkaDealsSDK\Model\DepositForm;
 use Fostenslave\NalogkaDealsSDK\Model\FormData;
 use Fostenslave\NalogkaDealsSDK\Model\Dispute;
-use Fostenslave\NalogkaDealsSDK\Model\Payment;
+use Fostenslave\NalogkaDealsSDK\Model\Transaction;
 use Fostenslave\NalogkaDealsSDK\Model\SubjectItem;
 use Fostenslave\NalogkaDealsSDK\Model\DealStatus;
 use Fostenslave\NalogkaDealsSDK\Model\Requisite;
-use Fostenslave\NalogkaDealsSDK\Model\Track;
+use Fostenslave\NalogkaDealsSDK\Model\TrackData;
 
 use Fostenslave\NalogkaDealsSDK\Model\DeliveryEvent;
 use Fostenslave\NalogkaDealsSDK\Model\CreatedEvent;
@@ -40,11 +39,11 @@ class SerializationComponent extends AbstractSerializationComponent
         'Dispute' => Dispute::class,
         'SubjectItem' => SubjectItem::class,
         'Deposit' => Deposit::class,
-        'Payment' => Payment::class,
+        'Transaction' => Transaction::class,
         'DealStatus' => DealStatus::class,
         'Requisite' => Requisite::class,
         'FormData'  => FormData::class,
-        'Track' => Track::class,
+        'TrackData' => TrackData::class,
 
         'DeliveryEvent' => DeliveryEvent::class,
         'CreatedEvent' => CreatedEvent::class,

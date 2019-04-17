@@ -2,31 +2,22 @@
 
 namespace Fostenslave\NalogkaDealsSDK\Request;
 
-use Fostenslave\NalogkaDealsSDK\Model\Deal;
+use Fostenslave\NalogkaDealsSDK\Model\DealStatus;
 
-class UndoneDealRequest extends AbstractRequest
+class DealListStatusesRequest extends AbstractRequest
 {
-    private $id;
-
-    public function id($id)
-    {
-        $this->id = $id;
-
-        return $this;
-    }
-
     protected function getHttpMethod()
     {
-        return self::METHOD_POST;
+        return self::METHOD_GET;
     }
 
     protected function getHttpPath()
     {
-        return "/deals/{$this->id}/undone";
+        return "/deals/statuses";
     }
 
     /**
-     * @return array|Deal
+     * @return DealStatus[]
      * @throws \Fostenslave\NalogkaDealsSDK\Exception\ApiErrorException
      * @throws \Fostenslave\NalogkaDealsSDK\Exception\NalogkaSdkException
      * @throws \Fostenslave\NalogkaDealsSDK\Exception\ServerErrorException

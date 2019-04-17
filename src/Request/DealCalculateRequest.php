@@ -4,10 +4,8 @@ namespace Fostenslave\NalogkaDealsSDK\Request;
 
 use Fostenslave\NalogkaDealsSDK\Model\Deal;
 
-class CalculateDealRequest extends AbstractRequest
+class DealCalculateRequest extends AbstractRequest
 {
-
-
     public function commissionPayer($commissionPayer)
     {
         $this->requestData['commission_payer'] = $commissionPayer;

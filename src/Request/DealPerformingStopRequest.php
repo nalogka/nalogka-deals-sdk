@@ -4,9 +4,10 @@ namespace Fostenslave\NalogkaDealsSDK\Request;
 
 use Fostenslave\NalogkaDealsSDK\Model\Deal;
 
-class GetDealRequest extends AbstractRequest
+class DealPerformingStopRequest extends AbstractRequest
 {
     private $id;
+    private $initiatorProfileId;
 
     public function id($id)
     {
@@ -15,14 +16,25 @@ class GetDealRequest extends AbstractRequest
         return $this;
     }
 
+    public function initiatorProfileId($initiatorProfileId)
+    {
+        $this->initiatorProfileId = $initiatorProfileId;
+
+        return $this;
+    }
+
     protected function getHttpMethod()
     {
-        return self::METHOD_GET;
+        return self::METHOD_POST;
     }
 
     protected function getHttpPath()
     {
-        return "/deals/{$this->id}";
+        if ($this->initiatorProfileId) {
+            return "/deals/{$this->id}/performing-stop?initiator_profile_id=" . $this->initiatorProfileId;
+        }
+
+        return "/deals/{$this->id}/performing-stop";
     }
 
     /**

@@ -1,13 +1,14 @@
 <?php
 
+
 namespace Fostenslave\NalogkaDealsSDK\Request;
 
-use Fostenslave\NalogkaDealsSDK\Model\Deal;
-use Fostenslave\NalogkaDealsSDK\Model\FormData;
 
-class GetDepositFormRequest extends AbstractRequest
+class DealAttachmentsAddRequest extends AbstractRequest
 {
     private $id;
+
+    private $initiatorProfileId;
 
     public function id($id)
     {
@@ -16,39 +17,39 @@ class GetDepositFormRequest extends AbstractRequest
         return $this;
     }
 
-    public function requisiteId($id)
+    public function initiatorProfileId($initiatorProfileId)
     {
-        $this->requestData['requisite_id'] = $id;
+        $this->initiatorProfileId = $initiatorProfileId;
 
         return $this;
     }
 
-    public function successUrl($url)
+    public function attachment($id, $description)
     {
-        $this->requestData['success_url'] = $url;
-
-        return $this;
-    }
-    
-    public function failUrl($url)
-    {
-        $this->requestData['fail_url'] = $url;
+        $this->requestData['attachments'][] = [
+            'id' => $id,
+            'description' => $description
+        ];
 
         return $this;
     }
 
     protected function getHttpMethod()
     {
-        return self::METHOD_GET;
+        return self::METHOD_POST;
     }
 
     protected function getHttpPath()
     {
-        return "/deals/{$this->id}/deposit-form";
+        if ($this->initiatorProfileId) {
+            return "/deals/{$this->id}/add-attachments?initiator_profile_id=" . $this->initiatorProfileId;
+        }
+
+        return "/deals/{$this->id}/add-attachments";
     }
 
     /**
-     * @return array|FormData
+     * @return null
      * @throws \Fostenslave\NalogkaDealsSDK\Exception\ApiErrorException
      * @throws \Fostenslave\NalogkaDealsSDK\Exception\NalogkaSdkException
      * @throws \Fostenslave\NalogkaDealsSDK\Exception\ServerErrorException
