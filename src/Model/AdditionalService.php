@@ -6,6 +6,13 @@ namespace Fostenslave\NalogkaDealsSDK\Model;
 
 class AdditionalService
 {
+    const PAYER_BUYER = 'buyer';
+    const PAYER_SELLER = 'seller';
+    const PAYER_5050 = '50/50';
+
+    const PROVIDED_BY_SELLER = 'seller';
+    const PROVIDED_BY_NALOGKA = 'nalogka';
+
     /** @var string Наименование сервиса */
     public $name;
 

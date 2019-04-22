@@ -8,6 +8,10 @@ class DealCreateRequest extends AbstractRequest
 {
     public $initiatorProfileId;
 
+    public $requestData = [
+        'partial_buyout_allowed' => false
+    ];
+
     public function initiatorProfileId($initiatorProfileId)
     {
         $this->initiatorProfileId = $initiatorProfileId;
