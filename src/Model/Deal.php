@@ -6,6 +6,10 @@ namespace Fostenslave\NalogkaDealsSDK\Model;
 
 class Deal
 {
+    const COMMISSION_PAYER_BUYER = 'buyer';
+    const COMMISSION_PAYER_SELLER = 'seller';
+    const COMMISSION_PAYER_5050 = '50/50';
+
     /**
      * @var integer Идентификатор сделки
      */
