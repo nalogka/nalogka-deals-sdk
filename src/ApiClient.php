@@ -21,8 +21,8 @@ class ApiClient
     private $serializationComponent;
 
 
-    private  $logger;
-    
+    private $logger;
+
 
     public function __construct($baseUrl, $parameters = [], $serializationComponent, LoggerInterface $logger = null)
     {
@@ -81,7 +81,7 @@ class ApiClient
 
         $responseInfo = curl_getinfo($ch);
 
-        if ($this->logger instanceof LoggerInterface){
+        if ($this->logger instanceof LoggerInterface) {
             $this->logger->debug("Метод: {method} \n Данные запроса: {data} \n Ответ сервера: {rawResponse} \n Данные ответа: {responseInfo}", [
                 'method' => $method,
                 'data' => $data,
@@ -90,14 +90,18 @@ class ApiClient
             ]);
         }
 
-        if (!$rawResponse && $this->isErrorResponse($responseInfo['http_code'])) {
-            throw new ServerErrorException($responseInfo['http_code'], "Не удалось получить ответ от сервера. HTTP код: {$responseInfo['http_code']}");
+        if (empty($rawResponse)) {
+            if ($this->isErrorResponse($responseInfo['http_code'])) {
+                throw new ServerErrorException($responseInfo['http_code'], "Не удалось получить ответ от сервера. HTTP код: {$responseInfo['http_code']}");
+            } else {
+                return null;
+            }
         }
 
         $decodedResponse = json_decode($rawResponse, true);
 
         if (json_last_error() !== JSON_ERROR_NONE) {
-            throw new ServerErrorException($responseInfo['http_code'], $rawResponse);
+            throw new ServerErrorException($responseInfo['http_code'], "Не удалось декодировать ответ");
         }
 
         $deserializedResponse = $this->serializationComponent->deserialize($decodedResponse);
