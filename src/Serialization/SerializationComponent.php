@@ -3,6 +3,7 @@
 namespace Fostenslave\NalogkaDealsSDK\Serialization;
 
 use Fostenslave\NalogkaDealsSDK\Errors\AccessDeniedError;
+use Fostenslave\NalogkaDealsSDK\Errors\MalformedRequestError;
 use Fostenslave\NalogkaDealsSDK\Errors\UnauthorizedError;
 use Fostenslave\NalogkaDealsSDK\Errors\ItemValidationError;
 use Fostenslave\NalogkaDealsSDK\Errors\NotFoundError;
@@ -22,7 +23,6 @@ use Fostenslave\NalogkaDealsSDK\Model\SubjectItem;
 use Fostenslave\NalogkaDealsSDK\Model\DealStatus;
 use Fostenslave\NalogkaDealsSDK\Model\Requisite;
 use Fostenslave\NalogkaDealsSDK\Model\TrackData;
-
 use Fostenslave\NalogkaDealsSDK\Model\DeliveryEvent;
 use Fostenslave\NalogkaDealsSDK\Model\CreatedEvent;
 use Fostenslave\NalogkaDealsSDK\Model\UpdatedEvent;
@@ -42,7 +42,7 @@ class SerializationComponent extends AbstractSerializationComponent
         'Transaction' => Transaction::class,
         'DealStatus' => DealStatus::class,
         'Requisite' => Requisite::class,
-        'FormData'  => FormData::class,
+        'FormData' => FormData::class,
         'TrackData' => TrackData::class,
 
         'DeliveryEvent' => DeliveryEvent::class,
@@ -55,6 +55,7 @@ class SerializationComponent extends AbstractSerializationComponent
         'ItemValidationError' => ItemValidationError::class,
         'NotFoundError' => NotFoundError::class,
         'ValidationError' => ValidationError::class,
+        'MalformedRequestError' => MalformedRequestError::class,
         'ServerError' => ServerError::class,
     ];
 
@@ -160,7 +161,8 @@ class SerializationComponent extends AbstractSerializationComponent
         return $str;
     }
 
-    function camelCaseToUnderScore($input) {
+    function camelCaseToUnderScore($input)
+    {
         preg_match_all('!([A-Z][A-Z0-9]*(?=$|[A-Z][a-z0-9])|[A-Za-z][a-z0-9]+)!', $input, $matches);
         $ret = $matches[0];
         foreach ($ret as &$match) {
