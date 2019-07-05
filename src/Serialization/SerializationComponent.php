@@ -23,6 +23,7 @@ use Fostenslave\NalogkaDealsSDK\Model\SubjectItem;
 use Fostenslave\NalogkaDealsSDK\Model\DealStatus;
 use Fostenslave\NalogkaDealsSDK\Model\Requisite;
 use Fostenslave\NalogkaDealsSDK\Model\TrackData;
+use Fostenslave\NalogkaDealsSDK\Model\ContactInfo;
 use Fostenslave\NalogkaDealsSDK\Model\DeliveryEvent;
 use Fostenslave\NalogkaDealsSDK\Model\CreatedEvent;
 use Fostenslave\NalogkaDealsSDK\Model\UpdatedEvent;
@@ -44,6 +45,7 @@ class SerializationComponent extends AbstractSerializationComponent
         'Requisite' => Requisite::class,
         'FormData' => FormData::class,
         'TrackData' => TrackData::class,
+        'ContactInfo' => ContactInfo::class,
 
         'DeliveryEvent' => DeliveryEvent::class,
         'CreatedEvent' => CreatedEvent::class,
