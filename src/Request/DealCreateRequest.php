@@ -34,26 +34,26 @@ class DealCreateRequest extends AbstractRequest
     }
 
     public function buyerContacts($name, $email, $phone)
-	{
-		$this->requestData['buyer_contacts'] = [
-			'name' => $name,
-			'email' => $email,
-			'phone' => $phone,
-		];
+    {
+        $this->requestData['buyer_contacts'] = [
+            'name' => $name,
+            'email' => $email,
+            'phone' => $phone,
+        ];
 
-		return $this;
-	}
+        return $this;
+    }
 
-	public function sellerContacts($name, $email, $phone)
-	{
-		$this->requestData['seller_contacts'] = [
-			'name' => $name,
-			'email' => $email,
-			'phone' => $phone,
-		];
+    public function sellerContacts($name, $email, $phone)
+    {
+        $this->requestData['seller_contacts'] = [
+            'name' => $name,
+            'email' => $email,
+            'phone' => $phone,
+        ];
 
-		return $this;
-	}
+        return $this;
+    }
 
     public function buyerProfileId($buyerProfileId)
     {
