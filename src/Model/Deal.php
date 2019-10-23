@@ -11,7 +11,7 @@ class Deal
     const COMMISSION_PAYER_5050 = '50/50';
 
     /**
-     * @var integer Идентификатор сделки
+     * @var string Идентификатор сделки
      */
     public $id;
 
