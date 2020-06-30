@@ -78,6 +78,7 @@ class ApiClient
         curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
         curl_setopt($ch, CURLOPT_POSTREDIR, CURL_REDIR_POST_ALL);
         curl_setopt($ch, CURLOPT_HTTPHEADER, $curlReadyHeaders);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
 
         $rawResponse = curl_exec($ch);
 
@@ -88,7 +89,8 @@ class ApiClient
                 'method' => $method,
                 'data' => $data,
                 'rawResponse' => $rawResponse,
-                'responseInfo' => $responseInfo
+                'responseInfo' => $responseInfo,
+                'curlError' => curl_error($ch),
             ]);
         }
 
